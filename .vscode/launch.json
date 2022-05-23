@@ -1,0 +1,48 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Flutter Development",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main_development.dart",
+            "args": [
+                "--target",
+                "lib/main_development.dart",
+                "--flavor",
+                "development"
+              ]
+          },
+        {
+          "name": "Flutter Staging",
+          "request": "launch",
+          "type": "dart",
+          "program": "lib/main_staging.dart",
+          "args": [
+              "--target",
+              "lib/main_staging.dart",
+              "--flavor",
+              "staging"
+            ]
+        },
+        {
+          "name": "Flutter Production",
+          "request": "launch",
+          "type": "dart",
+          "program": "lib/main_production.dart",
+          "args": [
+              "--target",
+              "lib/main_production.dart",
+              "--flavor",
+              "production"
+            ]
+        },
+        {
+            "type": "pwa-chrome",
+            "request": "launch",
+            "name": "Launch Chrome against localhost",
+            "url": "http://localhost:8080",
+            "webRoot": "${workspaceFolder}"
+        },
+    ]
+}
