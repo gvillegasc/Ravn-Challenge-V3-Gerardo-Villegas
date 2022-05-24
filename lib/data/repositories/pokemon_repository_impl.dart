@@ -21,23 +21,13 @@ class PokemonRepositoryImpl extends PokemonRepository {
       final pokemonListLocal = await localDataSource.getPokemonList();
       if (pokemonListLocal.isEmpty) {
         final pokemonListRemote = await remoteDataSource.getPokemonList();
-        return Right(pokemonListRemote);
+        final pokemonListLocal =
+            await localDataSource.savePokemonList(pokemonListRemote);
+        return Right(pokemonListLocal);
       }
       return Right(pokemonListLocal);
     } on ServerException {
       return Left(ServerFailure());
-    } on CacheException {
-      return Left(CacheFailure());
-    }
-  }
-
-  @override
-  Future<Either<Failure, List<Pokemon>>> savePokemonList(
-      List<Pokemon> pokemonList) async {
-    try {
-      final pokemonListLocal =
-          await localDataSource.savePokemonList(pokemonList);
-      return Right(pokemonListLocal);
     } on CacheException {
       return Left(CacheFailure());
     }

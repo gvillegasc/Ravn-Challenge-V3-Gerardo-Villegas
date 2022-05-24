@@ -29,7 +29,7 @@ void main() {
     final result = await usecase(NoParams());
 
     expect(result, equals(Right(pokemons)));
-    verify(() => pokemonRepository.getPokemonList());
+    verify(pokemonRepository.getPokemonList);
     verifyNoMoreInteractions(pokemonRepository);
   });
 }
