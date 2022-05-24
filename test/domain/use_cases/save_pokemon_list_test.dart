@@ -5,6 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:pokechallenge/domain/models/pokemon.dart';
 import 'package:pokechallenge/domain/use_cases/get_pokemon_list.dart';
+import 'package:pokechallenge/domain/use_cases/save_pokemon_list.dart';
 import 'package:pokechallenge/domain/use_cases/use_case.dart';
 
 import '../../fixtures/fixture_reader.dart';
@@ -12,24 +13,24 @@ import '../../mocks/repositories_mock.dart';
 
 void main() {
   late MockPokemonRepository pokemonRepository;
-  late GetPokemonList usecase;
+  late SavePokemonList usecase;
 
   setUp(() {
     pokemonRepository = MockPokemonRepository();
-    usecase = GetPokemonList(pokemonRepository);
+    usecase = SavePokemonList(pokemonRepository);
   });
 
   final pokemons =
       PokemonMapper.fromJsonList(json.decode(fixture('pokemons.json'))).items;
 
-  test('should get pokemon list from repository', () async {
-    when(() => pokemonRepository.getPokemonList())
+  test('should save pokemon list from repository', () async {
+    when(() => pokemonRepository.savePokemonList())
         .thenAnswer((_) async => Right(pokemons));
 
     final result = await usecase(NoParams());
 
     expect(result, equals(Right(pokemons)));
-    verify(() => pokemonRepository.getPokemonList());
+    verify(() => pokemonRepository.savePokemonList());
     verifyNoMoreInteractions(pokemonRepository);
   });
 }

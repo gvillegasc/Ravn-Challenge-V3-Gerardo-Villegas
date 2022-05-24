@@ -30,4 +30,9 @@ class PokemonRepositoryImpl extends PokemonRepository {
       return Left(CacheFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, List<Pokemon>>> savePokemonList() {
+    throw UnimplementedError();
+  }
 }
