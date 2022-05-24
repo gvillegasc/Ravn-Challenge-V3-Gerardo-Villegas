@@ -9,16 +9,16 @@ import 'package:pokechallenge/domain/repositories/pokemon_repository.dart';
 class PokemonRepositoryImpl extends PokemonRepository {
   PokemonRepositoryImpl({
     required this.remoteDataSource,
-    required this.locaDataSource,
+    required this.localDataSource,
   });
 
   final RemoteDataSource remoteDataSource;
-  final LocalDataSource locaDataSource;
+  final LocalDataSource localDataSource;
 
   @override
   Future<Either<Failure, List<Pokemon>>> getPokemonList() async {
     try {
-      final pokemonListLocal = await locaDataSource.getPokemonList();
+      final pokemonListLocal = await localDataSource.getPokemonList();
       if (pokemonListLocal.isEmpty) {
         final pokemonListRemote = await remoteDataSource.getPokemonList();
         return Right(pokemonListRemote);
@@ -34,7 +34,7 @@ class PokemonRepositoryImpl extends PokemonRepository {
   @override
   Future<Either<Failure, List<Pokemon>>> savePokemonList() async {
     try {
-      final pokemonList = await locaDataSource.savePokemonList();
+      final pokemonList = await localDataSource.savePokemonList();
       return Right(pokemonList);
     } on CacheException {
       return Left(CacheFailure());

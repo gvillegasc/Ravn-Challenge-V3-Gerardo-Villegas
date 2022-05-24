@@ -6,6 +6,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   AppConfig.instance.init(
     database: 'Pokechallenge.db',
+    apiGraphql: 'https://dex-server.herokuapp.com/',
   );
   runApp(const PokechallengeApp());
 }

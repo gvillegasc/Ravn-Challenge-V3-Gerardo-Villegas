@@ -21,7 +21,7 @@ void main() {
     localDataSource = MockLocalDataSource();
     repository = PokemonRepositoryImpl(
       remoteDataSource: remoteDataSource,
-      locaDataSource: localDataSource,
+      localDataSource: localDataSource,
     );
   });
 
