@@ -89,23 +89,24 @@ void main() {
         PokemonMapper.fromJsonList(json.decode(fixture('pokemons.json'))).items;
 
     test('should save pokemon list from the local data source', () async {
-      when(() => localDataSource.savePokemonList())
+      when(() => localDataSource.savePokemonList(pokemonList))
           .thenAnswer((_) async => pokemonList);
 
-      final result = await repository.savePokemonList();
+      final result = await repository.savePokemonList(pokemonList);
 
       expect(result, equals(Right(pokemonList)));
-      verify(localDataSource.savePokemonList);
+      verify(() => localDataSource.savePokemonList(pokemonList));
       verifyNoMoreInteractions(localDataSource);
     });
 
     test('should return a cache failure from the local data source', () async {
-      when(() => localDataSource.savePokemonList()).thenThrow(CacheException());
+      when(() => localDataSource.savePokemonList(pokemonList))
+          .thenThrow(CacheException());
 
-      final result = await repository.savePokemonList();
+      final result = await repository.savePokemonList(pokemonList);
 
       expect(result, equals(Left(CacheFailure())));
-      verify(localDataSource.savePokemonList);
+      verify(() => localDataSource.savePokemonList(pokemonList));
       verifyNoMoreInteractions(localDataSource);
     });
   });

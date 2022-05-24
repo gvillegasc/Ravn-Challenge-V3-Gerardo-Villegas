@@ -12,7 +12,7 @@ class Stores {
 
 abstract class LocalDataSource {
   Future<List<Pokemon>> getPokemonList();
-  Future<List<Pokemon>> savePokemonList();
+  Future<List<Pokemon>> savePokemonList(List<Pokemon> pokemonList);
 }
 
 class LocalDataSourceImpl extends LocalDataSource {
@@ -29,7 +29,7 @@ class LocalDataSourceImpl extends LocalDataSource {
   }
 
   @override
-  Future<List<Pokemon>> savePokemonList() {
+  Future<List<Pokemon>> savePokemonList(List<Pokemon> pokemonList) {
     throw UnimplementedError();
   }
 }

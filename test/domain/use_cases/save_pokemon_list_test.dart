@@ -5,7 +5,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:pokechallenge/domain/models/pokemon.dart';
 import 'package:pokechallenge/domain/use_cases/save_pokemon_list.dart';
-import 'package:pokechallenge/domain/use_cases/use_case.dart';
 
 import '../../fixtures/fixture_reader.dart';
 import '../../mocks/repositories_mock.dart';
@@ -23,13 +22,13 @@ void main() {
       PokemonMapper.fromJsonList(json.decode(fixture('pokemons.json'))).items;
 
   test('should save pokemon list from repository', () async {
-    when(() => pokemonRepository.savePokemonList())
+    when(() => pokemonRepository.savePokemonList(pokemons))
         .thenAnswer((_) async => Right(pokemons));
 
-    final result = await usecase(NoParams());
+    final result = await usecase(SavePokemonListParams(pokemonList: pokemons));
 
     expect(result, equals(Right(pokemons)));
-    verify(() => pokemonRepository.savePokemonList());
+    verify(() => pokemonRepository.savePokemonList(pokemons));
     verifyNoMoreInteractions(pokemonRepository);
   });
 }
