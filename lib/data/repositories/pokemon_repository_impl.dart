@@ -32,7 +32,12 @@ class PokemonRepositoryImpl extends PokemonRepository {
   }
 
   @override
-  Future<Either<Failure, List<Pokemon>>> savePokemonList() {
-    throw UnimplementedError();
+  Future<Either<Failure, List<Pokemon>>> savePokemonList() async {
+    try {
+      final pokemonList = await locaDataSource.savePokemonList();
+      return Right(pokemonList);
+    } on CacheException {
+      return Left(CacheFailure());
+    }
   }
 }

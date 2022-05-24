@@ -83,4 +83,30 @@ void main() {
       verifyNoMoreInteractions(localDataSource);
     });
   });
+
+  group('savePokemonList', () {
+    final pokemonList =
+        PokemonMapper.fromJsonList(json.decode(fixture('pokemons.json'))).items;
+
+    test('should save pokemon list from the local data source', () async {
+      when(() => localDataSource.savePokemonList())
+          .thenAnswer((_) async => pokemonList);
+
+      final result = await repository.savePokemonList();
+
+      expect(result, equals(Right(pokemonList)));
+      verify(localDataSource.savePokemonList);
+      verifyNoMoreInteractions(localDataSource);
+    });
+
+    test('should return a cache failure from the local data source', () async {
+      when(() => localDataSource.savePokemonList()).thenThrow(CacheException());
+
+      final result = await repository.savePokemonList();
+
+      expect(result, equals(Left(CacheFailure())));
+      verify(localDataSource.savePokemonList);
+      verifyNoMoreInteractions(localDataSource);
+    });
+  });
 }
