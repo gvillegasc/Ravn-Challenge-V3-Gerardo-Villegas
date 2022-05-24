@@ -4,6 +4,8 @@ import 'package:pokechallenge/pokechallenge_app.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  AppConfig.instance.init();
+  AppConfig.instance.init(
+    database: 'Pokechallenge_stg.db',
+  );
   runApp(const PokechallengeApp());
 }
