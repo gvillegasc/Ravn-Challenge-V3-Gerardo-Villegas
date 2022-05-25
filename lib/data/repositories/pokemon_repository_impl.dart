@@ -19,6 +19,7 @@ class PokemonRepositoryImpl extends PokemonRepository {
   Future<Either<Failure, List<Pokemon>>> getPokemonList() async {
     try {
       final pokemonListLocal = await localDataSource.getPokemonList();
+      // return Left(ServerFailure());
       if (pokemonListLocal.isEmpty) {
         final pokemonListRemote = await remoteDataSource.getPokemonList();
         final pokemonListLocal =

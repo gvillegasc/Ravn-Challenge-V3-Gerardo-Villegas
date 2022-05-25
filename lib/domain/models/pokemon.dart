@@ -118,24 +118,24 @@ enum TypeName {
 }
 
 final typeNameValues = EnumValues({
-  'Bug': TypeName.grass,
-  'Dark': TypeName.poison,
-  'Dragon': TypeName.fire,
-  'Electric': TypeName.flying,
-  'Fairy': TypeName.water,
-  'Fighting': TypeName.bug,
-  'Fire': TypeName.normal,
-  'Flying': TypeName.electric,
-  'Ghost': TypeName.ground,
-  'Grass': TypeName.fairy,
-  'Ground': TypeName.fighting,
-  'Ice': TypeName.psychic,
-  'Normal': TypeName.rock,
-  'Poison': TypeName.steel,
-  'Psychic': TypeName.ice,
-  'Rock': TypeName.ghost,
-  'Steel': TypeName.dragon,
-  'Water': TypeName.dark
+  'Bug': TypeName.bug,
+  'Dark': TypeName.dark,
+  'Dragon': TypeName.dragon,
+  'Electric': TypeName.electric,
+  'Fairy': TypeName.fairy,
+  'Fighting': TypeName.fighting,
+  'Fire': TypeName.fire,
+  'Flying': TypeName.flying,
+  'Ghost': TypeName.ghost,
+  'Grass': TypeName.grass,
+  'Ground': TypeName.ground,
+  'Ice': TypeName.ice,
+  'Normal': TypeName.normal,
+  'Poison': TypeName.poison,
+  'Psychic': TypeName.psychic,
+  'Rock': TypeName.rock,
+  'Steel': TypeName.steel,
+  'Water': TypeName.water,
 });
 
 class EnumValues<T> {

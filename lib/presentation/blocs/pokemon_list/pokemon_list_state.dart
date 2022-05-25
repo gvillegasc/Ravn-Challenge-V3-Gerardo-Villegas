@@ -36,3 +36,19 @@ class LoadErrorPokemonList extends PokemonListState {
   @override
   List<Object> get props => [];
 }
+
+class SearchEmptyPokemonList extends PokemonListState {
+  const SearchEmptyPokemonList();
+
+  @override
+  List<Object> get props => [];
+}
+
+class SearchResultPokemonList extends PokemonListState {
+  const SearchResultPokemonList({required this.pokemonList});
+
+  final List<Pokemon> pokemonList;
+
+  @override
+  List<Object> get props => [pokemonList];
+}

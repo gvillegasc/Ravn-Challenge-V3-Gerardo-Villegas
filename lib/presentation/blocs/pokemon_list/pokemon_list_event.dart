@@ -13,3 +13,12 @@ class OnGetPokemonList extends PokemonListEvent {
   @override
   List<Object> get props => [];
 }
+
+class OnSearchPokemon extends PokemonListEvent {
+  const OnSearchPokemon(this.word);
+
+  final String word;
+
+  @override
+  List<Object> get props => [word];
+}
