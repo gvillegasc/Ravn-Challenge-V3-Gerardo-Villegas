@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pokechallenge/app_config.dart';
+import 'package:pokechallenge/injection/injection.dart';
 import 'package:pokechallenge/pokechallenge_app.dart';
 
 Future<void> main() async {
@@ -8,5 +9,6 @@ Future<void> main() async {
     database: 'Pokechallenge.db',
     apiGraphql: 'https://dex-server.herokuapp.com/',
   );
+  await init();
   runApp(const PokechallengeApp());
 }

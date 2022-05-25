@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pokechallenge/presentation/ui/pokemon/pokemon_list/pokemon_list.dart';
+import 'package:pokechallenge/presentation/ui/pokemon/pokemon_list/pokemon_list_page.dart';
 
 class AppRoutes {
   static const String pokemonList = '/';

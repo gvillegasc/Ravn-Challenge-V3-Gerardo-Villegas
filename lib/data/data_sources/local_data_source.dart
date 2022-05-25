@@ -29,8 +29,13 @@ class LocalDataSourceImpl extends LocalDataSource {
   }
 
   @override
-  Future<List<Pokemon>> savePokemonList(List<Pokemon> pokemonList) {
-    throw UnimplementedError();
+  Future<List<Pokemon>> savePokemonList(List<Pokemon> pokemonList) async {
+    final _pokemonFolder = intMapStoreFactory.store(Stores.storePokemon);
+    final _db = await AppDatabase.instance.database;
+    for (var i = 0; i < pokemonList.length; i++) {
+      await _pokemonFolder.add(_db, pokemonList[i].toJson());
+    }
+    return pokemonList;
   }
 }
 

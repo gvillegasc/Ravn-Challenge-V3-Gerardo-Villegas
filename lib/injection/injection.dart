@@ -6,10 +6,18 @@ import 'package:pokechallenge/data/data_sources/remote_data_source.dart';
 import 'package:pokechallenge/data/repositories/pokemon_repository_impl.dart';
 import 'package:pokechallenge/domain/repositories/pokemon_repository.dart';
 import 'package:pokechallenge/domain/use_cases/get_pokemon_list.dart';
+import 'package:pokechallenge/presentation/blocs/pokemon_list/pokemon_list_bloc.dart';
 
 final getIt = GetIt.instance;
 
 Future<void> init() async {
+  // Blocs
+  getIt.registerLazySingleton(
+    () => PokemonListBloc(
+      getPokemonList: getIt<GetPokemonList>(),
+    ),
+  );
+
   // Use cases
   getIt.registerLazySingleton(
     () => GetPokemonList(

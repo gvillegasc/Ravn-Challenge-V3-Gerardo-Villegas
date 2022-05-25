@@ -32,6 +32,14 @@ class Pokemon {
   List<Type> types;
   Generation generation;
   Sprites sprites;
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'name': name,
+        'types': List<dynamic>.from(types.map((x) => x.toJson())),
+        'generation': generationValues.reverse[generation],
+        'sprites': sprites.toJson(),
+      };
 }
 
 enum Generation {
@@ -66,6 +74,10 @@ class Sprites {
       );
 
   String frontDefault;
+
+  Map<String, dynamic> toJson() => {
+        'front_default': frontDefault,
+      };
 }
 
 class Type {
@@ -78,6 +90,10 @@ class Type {
       );
 
   TypeName name;
+
+  Map<String, dynamic> toJson() => {
+        'name': typeNameValues.reverse[name],
+      };
 }
 
 enum TypeName {
