@@ -1,9 +1,12 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pokechallenge/core/app_colors.dart';
 
 final appLightTheme = ThemeData(
-  appBarTheme:
-      const AppBarTheme(backgroundColor: AppColors.gray50, elevation: 0),
+  appBarTheme: const AppBarTheme(
+    backgroundColor: AppColors.gray50,
+    elevation: 0,
+  ),
   cardTheme: const CardTheme(
     color: AppColors.gray50,
     shape: RoundedRectangleBorder(
@@ -57,8 +60,10 @@ final appLightTheme = ThemeData(
 );
 
 final appDarkTheme = ThemeData(
-  appBarTheme:
-      const AppBarTheme(backgroundColor: AppColors.black60, elevation: 0),
+  appBarTheme: const AppBarTheme(
+    backgroundColor: AppColors.black60,
+    elevation: 0,
+  ),
   cardTheme: const CardTheme(
     color: AppColors.black60,
     shape: RoundedRectangleBorder(

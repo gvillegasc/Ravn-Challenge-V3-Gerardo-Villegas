@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pokechallenge/domain/models/pokemon.dart';
 
-Widget typePokemonIcon(TypeName name) {
+Widget pokemonType(TypeName name) {
   switch (name) {
     case TypeName.bug:
       return Align(

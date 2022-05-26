@@ -1,4 +1,4 @@
-String idPokemon(int id) {
+String pokemonId(int id) {
   final String stringId = id.toString();
   if (stringId.length == 1) {
     return '#00$stringId';
