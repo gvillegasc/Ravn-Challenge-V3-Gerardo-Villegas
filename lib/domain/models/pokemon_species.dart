@@ -8,7 +8,7 @@ class PokemonSpecies {
 
   factory PokemonSpecies.fromJson(Map<String, dynamic> json) => PokemonSpecies(
         colorName: ColorName.fromJson(json['color']),
-        evolutionChain: EvolutionChain.fromJson(json['evolution_chain']),
+        evolutionChain: EvolutionChainUrl.fromJson(json['evolution_chain']),
         flavorTextEntries: List<FlavorTextEntry>.from(
             json['flavor_text_entries']
                 .map((x) => FlavorTextEntry.fromJson(x))),
@@ -16,7 +16,7 @@ class PokemonSpecies {
       );
 
   ColorName colorName;
-  EvolutionChain evolutionChain;
+  EvolutionChainUrl evolutionChain;
   List<FlavorTextEntry> flavorTextEntries;
   bool isLegendary;
 }
@@ -33,12 +33,13 @@ class ColorName {
   String name;
 }
 
-class EvolutionChain {
-  EvolutionChain({
+class EvolutionChainUrl {
+  EvolutionChainUrl({
     required this.url,
   });
 
-  factory EvolutionChain.fromJson(Map<String, dynamic> json) => EvolutionChain(
+  factory EvolutionChainUrl.fromJson(Map<String, dynamic> json) =>
+      EvolutionChainUrl(
         url: json['url'],
       );
 

@@ -3,6 +3,7 @@ import 'package:pokechallenge/core/error/exceptions.dart';
 import 'package:pokechallenge/core/error/failures.dart';
 import 'package:pokechallenge/data/data_sources/local_data_source.dart';
 import 'package:pokechallenge/data/data_sources/remote_data_source.dart';
+import 'package:pokechallenge/domain/models/evolution_chain.dart';
 import 'package:pokechallenge/domain/models/pokemon.dart';
 import 'package:pokechallenge/domain/models/pokemon_form.dart';
 import 'package:pokechallenge/domain/models/pokemon_species.dart';
@@ -55,5 +56,10 @@ class PokemonRepositoryImpl extends PokemonRepository {
     } on ServerException {
       return Left(ServerFailure());
     }
+  }
+
+  @override
+  Future<Either<Failure, EvolutionChain>> getEvolutionChain(int pokemonId) {
+    throw UnimplementedError();
   }
 }
