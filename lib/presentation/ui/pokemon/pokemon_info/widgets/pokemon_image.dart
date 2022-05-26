@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:pokechallenge/core/app_colors.dart';
 import 'package:pokechallenge/core/utils/pokemon_color.dart';
 import 'package:pokechallenge/domain/models/pokemon_form.dart';
@@ -76,7 +77,7 @@ class _PokemonImageState extends State<PokemonImage> {
                   0: Container(
                     margin: const EdgeInsets.symmetric(vertical: 8),
                     child: Text(
-                      'Default Sprite',
+                      AppLocalizations.of(context)!.defaultSprite,
                       style: Theme.of(context)
                           .textTheme
                           .headline2!
@@ -84,7 +85,7 @@ class _PokemonImageState extends State<PokemonImage> {
                     ),
                   ),
                   1: Text(
-                    'Shiny Sprite',
+                    AppLocalizations.of(context)!.shinySprite,
                     style: Theme.of(context)
                         .textTheme
                         .headline2!

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:pokechallenge/core/app_colors.dart';
 import 'package:pokechallenge/domain/models/pokemon.dart';
 import 'package:pokechallenge/presentation/ui/pokemon/pokemon_info/widgets/pokemon_info.dart';
@@ -25,7 +26,7 @@ class PokemonInfoPage extends StatelessWidget {
           ),
         ),
         title: Text(
-          'Pokemon Info',
+          AppLocalizations.of(context)!.pokemonInfo,
           style: Theme.of(context).textTheme.headline2!.copyWith(
                 fontWeight: FontWeight.w600,
               ),

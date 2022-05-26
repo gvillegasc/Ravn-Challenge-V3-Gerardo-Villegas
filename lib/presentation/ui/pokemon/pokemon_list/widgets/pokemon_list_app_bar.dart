@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:pokechallenge/core/app_colors.dart';
 import 'package:pokechallenge/presentation/blocs/pokemon_list/pokemon_list_bloc.dart';
 
@@ -34,7 +35,7 @@ class _PokemonListAppBarState extends State<PokemonListAppBar> {
       title: Column(
         children: [
           Text(
-            'Pokemon List',
+            AppLocalizations.of(context)!.pokemonList,
             style: Theme.of(context).textTheme.headline6,
           ),
         ],
@@ -69,14 +70,14 @@ class _PokemonListAppBarState extends State<PokemonListAppBar> {
               ),
               AnimatedContainer(
                 duration: const Duration(milliseconds: 250),
-                width: _searchHasText ? 70 : 0,
+                width: _searchHasText ? 80 : 0,
                 padding: const EdgeInsets.only(left: 5),
                 height: 50,
                 alignment: Alignment.center,
                 child: CupertinoButton(
                   padding: EdgeInsets.zero,
                   child: Text(
-                    'Cancel',
+                    AppLocalizations.of(context)!.cancel,
                     maxLines: 1,
                     style: Theme.of(context).textTheme.bodyText2!.copyWith(
                           color: AppColors.blue50,

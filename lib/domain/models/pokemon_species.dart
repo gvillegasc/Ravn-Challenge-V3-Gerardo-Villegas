@@ -55,12 +55,15 @@ class EvolutionChainUrl {
 class FlavorTextEntry {
   FlavorTextEntry({
     required this.flavorText,
+    required this.language,
   });
 
   factory FlavorTextEntry.fromJson(Map<String, dynamic> json) =>
       FlavorTextEntry(
         flavorText: json['flavor_text'],
+        language: json['language']['name'],
       );
 
   String flavorText;
+  String language;
 }

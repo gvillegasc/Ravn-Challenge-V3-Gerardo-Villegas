@@ -114,10 +114,18 @@ class _BuildPokemonInfo extends StatelessWidget {
           style: Theme.of(context).textTheme.subtitle2,
         ),
         const SizedBox(height: 10),
-        Text(
-          pokemonSpecies.flavorTextEntries[0].flavorText.replaceAll('\n', ' '),
-          textAlign: TextAlign.center,
-          style: Theme.of(context).textTheme.headline1,
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: Text(
+            pokemonSpecies.flavorTextEntries
+                .firstWhere((element) =>
+                    element.language ==
+                    Localizations.localeOf(context).languageCode)
+                .flavorText
+                .replaceAll('\n', ' '),
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.headline1,
+          ),
         ),
         if (evolutionChain.chain.evolvesTo.isNotEmpty)
           Container(

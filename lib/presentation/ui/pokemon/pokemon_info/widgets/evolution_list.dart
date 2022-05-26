@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:pokechallenge/domain/models/evolution_chain.dart';
 import 'package:pokechallenge/domain/models/pokemon.dart';
 import 'package:pokechallenge/presentation/ui/pokemon/pokemon_info/widgets/evelution_list_item.dart';
@@ -23,7 +24,7 @@ class EvolutionList extends StatelessWidget {
           Container(
             alignment: Alignment.center,
             child: Text(
-              'Evolutions',
+              AppLocalizations.of(context)!.evolutions,
               style: Theme.of(context).textTheme.subtitle2,
             ),
           ),
