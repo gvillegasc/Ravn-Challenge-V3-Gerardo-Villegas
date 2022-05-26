@@ -8,6 +8,7 @@ import 'package:pokechallenge/core/error/failures.dart';
 import 'package:pokechallenge/data/repositories/pokemon_repository_impl.dart';
 import 'package:pokechallenge/domain/models/pokemon.dart';
 import 'package:pokechallenge/domain/models/pokemon_form.dart';
+import 'package:pokechallenge/domain/models/pokemon_species.dart';
 
 import '../../fixtures/fixture_reader.dart';
 import '../../mocks/data_sources_mock.dart';
@@ -108,7 +109,7 @@ void main() {
     });
   });
 
-  group('getPokemonForms', () {
+  group('getPokemonForm', () {
     const pokemonId = 1;
     final pokemonForm =
         PokemonForm.fromJson(json.decode(fixture('pokemon_form.json')));
@@ -132,6 +133,34 @@ void main() {
 
       expect(result, equals(Left(ServerFailure())));
       verify(() => remoteDataSource.getPokemonForm(pokemonId));
+      verifyNoMoreInteractions(remoteDataSource);
+    });
+  });
+
+  group('getPokemonSpecies', () {
+    const pokemonId = 1;
+    final pokemonSpecies =
+        PokemonSpecies.fromJson(json.decode(fixture('pokemon_species.json')));
+
+    test('should get a pokemon species from the remote data source', () async {
+      when(() => remoteDataSource.getPokemonSpecies(pokemonId))
+          .thenAnswer((_) async => pokemonSpecies);
+
+      final result = await repository.getPokemonSpecies(pokemonId);
+
+      expect(result, equals(Right(pokemonSpecies)));
+      verify(() => remoteDataSource.getPokemonSpecies(pokemonId));
+      verifyNoMoreInteractions(remoteDataSource);
+    });
+
+    test('should get a server failure from the remote data source', () async {
+      when(() => remoteDataSource.getPokemonSpecies(pokemonId))
+          .thenThrow(ServerException());
+
+      final result = await repository.getPokemonSpecies(pokemonId);
+
+      expect(result, equals(Left(ServerFailure())));
+      verify(() => remoteDataSource.getPokemonSpecies(pokemonId));
       verifyNoMoreInteractions(remoteDataSource);
     });
   });

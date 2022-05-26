@@ -5,6 +5,7 @@ import 'package:pokechallenge/app_config.dart';
 import 'package:pokechallenge/domain/models/pokemon.dart';
 import 'package:pokechallenge/domain/models/pokemon_form.dart';
 import 'package:http/http.dart' as http;
+import 'package:pokechallenge/domain/models/pokemon_species.dart';
 
 class RequestHttpType {
   static const String get = 'get';
@@ -16,6 +17,7 @@ class RequestHttpType {
 abstract class RemoteDataSource {
   Future<List<Pokemon>> getPokemonList();
   Future<PokemonForm> getPokemonForm(int pokemonId);
+  Future<PokemonSpecies> getPokemonSpecies(int pokemonId);
 }
 
 class RemoteDataSourceImpl implements RemoteDataSource {
@@ -60,18 +62,6 @@ class RemoteDataSourceImpl implements RemoteDataSource {
     }
   }
 
-  @override
-  Future<PokemonForm> getPokemonForm(int pokemonId) async {
-    final resp = await _apiHttpRequest('/pokemon-form/$pokemonId');
-    if (resp.statusCode == 200) {
-      final decodedData = json.decode(resp.body);
-      final pokemonForm = PokemonForm.fromJson(decodedData);
-      return pokemonForm;
-    } else {
-      throw const ServerException();
-    }
-  }
-
   Future<http.Response> _apiHttpRequest(
     String endpoint, {
     String type = RequestHttpType.get,
@@ -98,6 +88,30 @@ class RemoteDataSourceImpl implements RemoteDataSource {
       default:
         resp = await http.get(url, headers: headers);
         return resp;
+    }
+  }
+
+  @override
+  Future<PokemonForm> getPokemonForm(int pokemonId) async {
+    final resp = await _apiHttpRequest('/pokemon-form/$pokemonId');
+    if (resp.statusCode == 200) {
+      final decodedData = json.decode(resp.body);
+      final pokemonForm = PokemonForm.fromJson(decodedData);
+      return pokemonForm;
+    } else {
+      throw const ServerException();
+    }
+  }
+
+  @override
+  Future<PokemonSpecies> getPokemonSpecies(int pokemonId) async {
+    final resp = await _apiHttpRequest('/pokemon-species/$pokemonId');
+    if (resp.statusCode == 200) {
+      final decodedData = json.decode(resp.body);
+      final pokemonSpecies = PokemonSpecies.fromJson(decodedData);
+      return pokemonSpecies;
+    } else {
+      throw const ServerException();
     }
   }
 }
