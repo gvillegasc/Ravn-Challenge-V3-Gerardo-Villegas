@@ -22,14 +22,15 @@ class Pokemon {
   factory Pokemon.fromJson(Map<String, dynamic> json) => Pokemon(
         id: json['id'],
         name: json['name'],
-        types: List<Type>.from(json['types'].map((x) => Type.fromJson(x))),
+        types: List<PokemonType>.from(
+            json['types'].map((x) => PokemonType.fromJson(x))),
         generation: generationValues.map[json['generation']]!,
         sprites: Sprites.fromJson(json['sprites']),
       );
 
   int id;
   String name;
-  List<Type> types;
+  List<PokemonType> types;
   Generation generation;
   Sprites sprites;
 
@@ -80,12 +81,12 @@ class Sprites {
       };
 }
 
-class Type {
-  Type({
+class PokemonType {
+  PokemonType({
     required this.name,
   });
 
-  factory Type.fromJson(Map<String, dynamic> json) => Type(
+  factory PokemonType.fromJson(Map<String, dynamic> json) => PokemonType(
         name: typeNameValues.map[json['name']]!,
       );
 

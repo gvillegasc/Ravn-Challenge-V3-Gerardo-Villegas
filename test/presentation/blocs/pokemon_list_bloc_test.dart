@@ -21,7 +21,7 @@ void main() {
     bloc = PokemonListBloc(getPokemonList: getPokemonList);
   });
 
-  test('initialState should be CommitInitial', () {
+  test('initialState should be PokemonListInitial', () {
     expect(bloc.state, equals(const PokemonListInitial()));
   });
 

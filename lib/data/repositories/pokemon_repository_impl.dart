@@ -3,7 +3,10 @@ import 'package:pokechallenge/core/error/exceptions.dart';
 import 'package:pokechallenge/core/error/failures.dart';
 import 'package:pokechallenge/data/data_sources/local_data_source.dart';
 import 'package:pokechallenge/data/data_sources/remote_data_source.dart';
+import 'package:pokechallenge/domain/models/evolution_chain.dart';
 import 'package:pokechallenge/domain/models/pokemon.dart';
+import 'package:pokechallenge/domain/models/pokemon_form.dart';
+import 'package:pokechallenge/domain/models/pokemon_species.dart';
 import 'package:pokechallenge/domain/repositories/pokemon_repository.dart';
 
 class PokemonRepositoryImpl extends PokemonRepository {
@@ -19,7 +22,6 @@ class PokemonRepositoryImpl extends PokemonRepository {
   Future<Either<Failure, List<Pokemon>>> getPokemonList() async {
     try {
       final pokemonListLocal = await localDataSource.getPokemonList();
-      // return Left(ServerFailure());
       if (pokemonListLocal.isEmpty) {
         final pokemonListRemote = await remoteDataSource.getPokemonList();
         final pokemonListLocal =
@@ -31,6 +33,40 @@ class PokemonRepositoryImpl extends PokemonRepository {
       return Left(ServerFailure());
     } on CacheException {
       return Left(CacheFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, PokemonForm>> getPokemonForm(int pokemonId) async {
+    try {
+      final pokemonForm = await remoteDataSource.getPokemonForm(pokemonId);
+      return Right(pokemonForm);
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, PokemonSpecies>> getPokemonSpecies(
+      int pokemonId) async {
+    try {
+      final pokemonSpecies =
+          await remoteDataSource.getPokemonSpecies(pokemonId);
+      return Right(pokemonSpecies);
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, EvolutionChain>> getEvolutionChain(
+      int chainId, int pokemonId) async {
+    try {
+      final pokemonSpecies =
+          await remoteDataSource.getEvolutionChain(chainId, pokemonId);
+      return Right(pokemonSpecies);
+    } on ServerException {
+      return Left(ServerFailure());
     }
   }
 }

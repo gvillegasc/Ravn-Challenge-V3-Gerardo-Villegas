@@ -1,0 +1,8 @@
+{
+  "id": 1,
+  "name": "bulbasaur",
+  "sprites": {
+    "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+    "front_shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/1.png"
+  }
+}

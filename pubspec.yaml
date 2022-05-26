@@ -17,6 +17,7 @@ dependencies:
   flutter_sticky_header: ^0.6.3
   get_it: ^7.1.2
   graphql: ^5.1.1
+  http: ^0.13.3
   path_provider: ^2.0.1
   sembast: ^3.1.0+2
 
@@ -33,3 +34,4 @@ flutter:
   uses-material-design: true
   assets:
     - assets/pages/icons/
+    - assets/pages/tags/
