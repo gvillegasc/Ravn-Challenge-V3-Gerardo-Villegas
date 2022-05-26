@@ -1,5 +1,6 @@
 import 'package:graphql/client.dart';
 import 'package:pokechallenge/domain/models/pokemon.dart';
+import 'package:pokechallenge/domain/models/pokemon_form.dart';
 
 class RequestHttpType {
   static const String get = 'get';
@@ -10,6 +11,7 @@ class RequestHttpType {
 
 abstract class RemoteDataSource {
   Future<List<Pokemon>> getPokemonList();
+  Future<PokemonForm> getPokemonForms(int pokemonId);
 }
 
 class RemoteDataSourceImpl implements RemoteDataSource {
@@ -50,5 +52,10 @@ class RemoteDataSourceImpl implements RemoteDataSource {
           PokemonMapper.fromJsonList(result.data!['allPokemon']);
       return pokemonList.items;
     }
+  }
+
+  @override
+  Future<PokemonForm> getPokemonForms(int pokemonId) {
+    throw UnimplementedError();
   }
 }

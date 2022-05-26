@@ -4,6 +4,7 @@ import 'package:pokechallenge/core/error/failures.dart';
 import 'package:pokechallenge/data/data_sources/local_data_source.dart';
 import 'package:pokechallenge/data/data_sources/remote_data_source.dart';
 import 'package:pokechallenge/domain/models/pokemon.dart';
+import 'package:pokechallenge/domain/models/pokemon_form.dart';
 import 'package:pokechallenge/domain/repositories/pokemon_repository.dart';
 
 class PokemonRepositoryImpl extends PokemonRepository {
@@ -19,7 +20,6 @@ class PokemonRepositoryImpl extends PokemonRepository {
   Future<Either<Failure, List<Pokemon>>> getPokemonList() async {
     try {
       final pokemonListLocal = await localDataSource.getPokemonList();
-      // return Left(ServerFailure());
       if (pokemonListLocal.isEmpty) {
         final pokemonListRemote = await remoteDataSource.getPokemonList();
         final pokemonListLocal =
@@ -31,6 +31,16 @@ class PokemonRepositoryImpl extends PokemonRepository {
       return Left(ServerFailure());
     } on CacheException {
       return Left(CacheFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, PokemonForm>> getPokemonForms(int pokemonId) async {
+    try {
+      final pokemonForm = await remoteDataSource.getPokemonForms(pokemonId);
+      return Right(pokemonForm);
+    } on ServerException {
+      return Left(ServerFailure());
     }
   }
 }
