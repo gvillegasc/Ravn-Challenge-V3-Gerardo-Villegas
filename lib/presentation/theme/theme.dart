@@ -23,10 +23,20 @@ final appLightTheme = ThemeData(
       fontWeight: FontWeight.bold,
       fontSize: 34,
     ),
+    headline5: TextStyle(
+      color: AppColors.black100,
+      fontWeight: FontWeight.w400,
+      fontSize: 28,
+    ),
     headline1: TextStyle(
       color: AppColors.black100,
       fontWeight: FontWeight.w400,
       fontSize: 13,
+    ),
+    headline2: TextStyle(
+      color: AppColors.black100,
+      fontWeight: FontWeight.w400,
+      fontSize: 15,
     ),
     subtitle2: TextStyle(
       color: AppColors.black100,
@@ -68,10 +78,20 @@ final appDarkTheme = ThemeData(
       fontWeight: FontWeight.bold,
       fontSize: 34,
     ),
+    headline5: TextStyle(
+      color: AppColors.white100,
+      fontWeight: FontWeight.w400,
+      fontSize: 28,
+    ),
     headline1: TextStyle(
       color: AppColors.white100,
       fontWeight: FontWeight.w400,
       fontSize: 13,
+    ),
+    headline2: TextStyle(
+      color: AppColors.white100,
+      fontWeight: FontWeight.w400,
+      fontSize: 15,
     ),
     subtitle2: TextStyle(
       color: AppColors.white100,

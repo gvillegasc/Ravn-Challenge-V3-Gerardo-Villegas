@@ -5,7 +5,9 @@ import 'package:pokechallenge/data/data_sources/local_data_source.dart';
 import 'package:pokechallenge/data/data_sources/remote_data_source.dart';
 import 'package:pokechallenge/data/repositories/pokemon_repository_impl.dart';
 import 'package:pokechallenge/domain/repositories/pokemon_repository.dart';
+import 'package:pokechallenge/domain/use_cases/get_pokemon_form.dart';
 import 'package:pokechallenge/domain/use_cases/get_pokemon_list.dart';
+import 'package:pokechallenge/presentation/blocs/pokemon_form/pokemon_form_bloc.dart';
 import 'package:pokechallenge/presentation/blocs/pokemon_list/pokemon_list_bloc.dart';
 import 'package:http/http.dart' as http;
 
@@ -18,10 +20,20 @@ Future<void> init() async {
       getPokemonList: getIt<GetPokemonList>(),
     ),
   );
+  getIt.registerLazySingleton(
+    () => PokemonFormBloc(
+      getPokemonForm: getIt<GetPokemonForm>(),
+    ),
+  );
 
   // Use cases
   getIt.registerLazySingleton(
     () => GetPokemonList(
+      getIt<PokemonRepository>(),
+    ),
+  );
+  getIt.registerLazySingleton(
+    () => GetPokemonForm(
       getIt<PokemonRepository>(),
     ),
   );
