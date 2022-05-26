@@ -6,6 +6,7 @@ import 'package:mocktail/mocktail.dart';
 import 'package:pokechallenge/core/error/exceptions.dart';
 import 'package:pokechallenge/core/error/failures.dart';
 import 'package:pokechallenge/data/repositories/pokemon_repository_impl.dart';
+import 'package:pokechallenge/domain/models/evolution_chain.dart';
 import 'package:pokechallenge/domain/models/pokemon.dart';
 import 'package:pokechallenge/domain/models/pokemon_form.dart';
 import 'package:pokechallenge/domain/models/pokemon_species.dart';
@@ -161,6 +162,34 @@ void main() {
 
       expect(result, equals(Left(ServerFailure())));
       verify(() => remoteDataSource.getPokemonSpecies(pokemonId));
+      verifyNoMoreInteractions(remoteDataSource);
+    });
+  });
+
+  group('getEvolutionChain', () {
+    const pokemonId = 1;
+    final evolutionChain =
+        EvolutionChain.fromJson(json.decode(fixture('evolution_chain.json')));
+
+    test('should get a evolution chain from the remote data source', () async {
+      when(() => remoteDataSource.getEvolutionChain(pokemonId))
+          .thenAnswer((_) async => evolutionChain);
+
+      final result = await repository.getEvolutionChain(pokemonId);
+
+      expect(result, equals(Right(evolutionChain)));
+      verify(() => remoteDataSource.getEvolutionChain(pokemonId));
+      verifyNoMoreInteractions(remoteDataSource);
+    });
+
+    test('should get a server failure from the remote data source', () async {
+      when(() => remoteDataSource.getEvolutionChain(pokemonId))
+          .thenThrow(ServerException());
+
+      final result = await repository.getEvolutionChain(pokemonId);
+
+      expect(result, equals(Left(ServerFailure())));
+      verify(() => remoteDataSource.getEvolutionChain(pokemonId));
       verifyNoMoreInteractions(remoteDataSource);
     });
   });

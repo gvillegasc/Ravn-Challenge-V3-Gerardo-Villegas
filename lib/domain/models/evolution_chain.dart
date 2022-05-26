@@ -39,11 +39,17 @@ class Species {
   Species({
     required this.name,
     required this.url,
+    this.id,
+    this.spriteFront,
   });
 
   factory Species.fromJson(Map<String, dynamic> json) => Species(
         name: json['name'],
         url: json['url'],
+        id: int.parse((json['url'])
+            .toString()
+            .replaceAll('https://pokeapi.co/api/v2/pokemon-species/', '')
+            .replaceAll('/', '')),
       );
 
   String name;

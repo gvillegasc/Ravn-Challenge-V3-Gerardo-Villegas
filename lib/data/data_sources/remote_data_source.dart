@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:graphql/client.dart';
 import 'package:pokechallenge/app_config.dart';
+import 'package:pokechallenge/domain/models/evolution_chain.dart';
 import 'package:pokechallenge/domain/models/pokemon.dart';
 import 'package:pokechallenge/domain/models/pokemon_form.dart';
 import 'package:http/http.dart' as http;
@@ -18,6 +19,7 @@ abstract class RemoteDataSource {
   Future<List<Pokemon>> getPokemonList();
   Future<PokemonForm> getPokemonForm(int pokemonId);
   Future<PokemonSpecies> getPokemonSpecies(int pokemonId);
+  Future<EvolutionChain> getEvolutionChain(int pokemonId);
 }
 
 class RemoteDataSourceImpl implements RemoteDataSource {
@@ -110,6 +112,29 @@ class RemoteDataSourceImpl implements RemoteDataSource {
       final decodedData = json.decode(resp.body);
       final pokemonSpecies = PokemonSpecies.fromJson(decodedData);
       return pokemonSpecies;
+    } else {
+      throw const ServerException();
+    }
+  }
+
+  @override
+  Future<EvolutionChain> getEvolutionChain(int pokemonId) async {
+    final resp = await _apiHttpRequest('/evolution-chain/$pokemonId');
+    if (resp.statusCode == 200) {
+      final decodedData = json.decode(resp.body);
+      final evolutionChain = EvolutionChain.fromJson(decodedData);
+      for (final evolution in evolutionChain.chain.evolvesTo) {
+        final respPokemonForm =
+            await _apiHttpRequest('/pokemon-form/${evolution.species.id}');
+        if (respPokemonForm.statusCode == 200) {
+          final decodedDataForm = json.decode(respPokemonForm.body);
+          final pokemonForm = PokemonForm.fromJson(decodedDataForm);
+          evolution.species.spriteFront = pokemonForm.sprites.frontDefault;
+        } else {
+          throw const ServerException();
+        }
+      }
+      return evolutionChain;
     } else {
       throw const ServerException();
     }

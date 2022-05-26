@@ -59,7 +59,14 @@ class PokemonRepositoryImpl extends PokemonRepository {
   }
 
   @override
-  Future<Either<Failure, EvolutionChain>> getEvolutionChain(int pokemonId) {
-    throw UnimplementedError();
+  Future<Either<Failure, EvolutionChain>> getEvolutionChain(
+      int pokemonId) async {
+    try {
+      final pokemonSpecies =
+          await remoteDataSource.getEvolutionChain(pokemonId);
+      return Right(pokemonSpecies);
+    } on ServerException {
+      return Left(ServerFailure());
+    }
   }
 }
