@@ -35,15 +35,21 @@ class ColorName {
 
 class EvolutionChainUrl {
   EvolutionChainUrl({
+    this.id,
     required this.url,
   });
 
   factory EvolutionChainUrl.fromJson(Map<String, dynamic> json) =>
       EvolutionChainUrl(
+        id: int.parse((json['url'])
+            .toString()
+            .replaceAll('https://pokeapi.co/api/v2/evolution-chain/', '')
+            .replaceAll('/', '')),
         url: json['url'],
       );
 
   String url;
+  int? id;
 }
 
 class FlavorTextEntry {

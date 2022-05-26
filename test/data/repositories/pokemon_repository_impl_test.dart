@@ -167,29 +167,31 @@ void main() {
   });
 
   group('getEvolutionChain', () {
-    const pokemonId = 1;
+    const pokemonId = 3;
+    const chainId = 1;
+
     final evolutionChain =
         EvolutionChain.fromJson(json.decode(fixture('evolution_chain.json')));
 
     test('should get a evolution chain from the remote data source', () async {
-      when(() => remoteDataSource.getEvolutionChain(pokemonId))
+      when(() => remoteDataSource.getEvolutionChain(chainId, pokemonId))
           .thenAnswer((_) async => evolutionChain);
 
-      final result = await repository.getEvolutionChain(pokemonId);
+      final result = await repository.getEvolutionChain(chainId, pokemonId);
 
       expect(result, equals(Right(evolutionChain)));
-      verify(() => remoteDataSource.getEvolutionChain(pokemonId));
+      verify(() => remoteDataSource.getEvolutionChain(chainId, pokemonId));
       verifyNoMoreInteractions(remoteDataSource);
     });
 
     test('should get a server failure from the remote data source', () async {
-      when(() => remoteDataSource.getEvolutionChain(pokemonId))
+      when(() => remoteDataSource.getEvolutionChain(chainId, pokemonId))
           .thenThrow(ServerException());
 
-      final result = await repository.getEvolutionChain(pokemonId);
+      final result = await repository.getEvolutionChain(chainId, pokemonId);
 
       expect(result, equals(Left(ServerFailure())));
-      verify(() => remoteDataSource.getEvolutionChain(pokemonId));
+      verify(() => remoteDataSource.getEvolutionChain(chainId, pokemonId));
       verifyNoMoreInteractions(remoteDataSource);
     });
   });

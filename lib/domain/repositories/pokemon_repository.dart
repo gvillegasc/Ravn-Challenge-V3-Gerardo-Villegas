@@ -9,5 +9,6 @@ abstract class PokemonRepository {
   Future<Either<Failure, List<Pokemon>>> getPokemonList();
   Future<Either<Failure, PokemonForm>> getPokemonForm(int pokemonId);
   Future<Either<Failure, PokemonSpecies>> getPokemonSpecies(int pokemonId);
-  Future<Either<Failure, EvolutionChain>> getEvolutionChain(int pokemonId);
+  Future<Either<Failure, EvolutionChain>> getEvolutionChain(
+      int chainId, int pokemonId);
 }

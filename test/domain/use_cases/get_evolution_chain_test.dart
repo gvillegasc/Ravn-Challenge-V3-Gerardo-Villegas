@@ -22,16 +22,18 @@ void main() {
       EvolutionChain.fromJson(json.decode(fixture('evolution_chain.json')));
 
   test('should get evolution chain from repository', () async {
-    const pokemonId = 1;
-    when(() => pokemonRepository.getEvolutionChain(pokemonId))
-        .thenAnswer((_) async => Right(evolutionChain));
+    const chainId = 1;
+    const pokemonId = 3;
+    when(
+      () => pokemonRepository.getEvolutionChain(chainId, pokemonId),
+    ).thenAnswer((_) async => Right(evolutionChain));
 
-    final result =
-        await usecase(const GetEvolutionChainParams(pokemonId: pokemonId));
+    final result = await usecase(
+        const GetEvolutionChainParams(chainId: chainId, pokemonId: pokemonId));
 
     expect(result, equals(Right(evolutionChain)));
 
-    verify(() => pokemonRepository.getEvolutionChain(pokemonId));
+    verify(() => pokemonRepository.getEvolutionChain(chainId, pokemonId));
     verifyNoMoreInteractions(pokemonRepository);
   });
 }

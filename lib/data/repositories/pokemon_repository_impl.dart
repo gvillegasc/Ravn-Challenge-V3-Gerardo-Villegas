@@ -60,10 +60,10 @@ class PokemonRepositoryImpl extends PokemonRepository {
 
   @override
   Future<Either<Failure, EvolutionChain>> getEvolutionChain(
-      int pokemonId) async {
+      int chainId, int pokemonId) async {
     try {
       final pokemonSpecies =
-          await remoteDataSource.getEvolutionChain(pokemonId);
+          await remoteDataSource.getEvolutionChain(chainId, pokemonId);
       return Right(pokemonSpecies);
     } on ServerException {
       return Left(ServerFailure());

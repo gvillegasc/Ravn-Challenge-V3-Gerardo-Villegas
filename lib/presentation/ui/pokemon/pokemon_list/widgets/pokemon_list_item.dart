@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:pokechallenge/core/extensions/string_extension.dart';
-import 'package:pokechallenge/core/utils/pokemon_id.dart';
+import 'package:pokechallenge/core/utils/pokemon_numeration.dart';
 import 'package:pokechallenge/core/utils/pokemon_type.dart';
 import 'package:pokechallenge/domain/models/pokemon.dart';
 import 'package:pokechallenge/presentation/routes/app_routes.dart';
@@ -53,7 +53,7 @@ class PokemonListItem extends StatelessWidget {
                           ),
                           const SizedBox(height: 2),
                           Text(
-                            pokemonId(pokemon.id),
+                            pokemonNumeration(pokemon.id),
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyText1!
@@ -92,7 +92,7 @@ class _PokemonTypes extends StatefulWidget {
     required this.types,
   }) : super(key: key);
 
-  final List<Type> types;
+  final List<PokemonType> types;
 
   @override
   State<_PokemonTypes> createState() => _PokemonTypesState();

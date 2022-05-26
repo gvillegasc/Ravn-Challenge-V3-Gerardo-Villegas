@@ -19,7 +19,7 @@ abstract class RemoteDataSource {
   Future<List<Pokemon>> getPokemonList();
   Future<PokemonForm> getPokemonForm(int pokemonId);
   Future<PokemonSpecies> getPokemonSpecies(int pokemonId);
-  Future<EvolutionChain> getEvolutionChain(int pokemonId);
+  Future<EvolutionChain> getEvolutionChain(int chainId, int pokemonId);
 }
 
 class RemoteDataSourceImpl implements RemoteDataSource {
@@ -118,12 +118,30 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   }
 
   @override
-  Future<EvolutionChain> getEvolutionChain(int pokemonId) async {
-    final resp = await _apiHttpRequest('/evolution-chain/$pokemonId');
+  Future<EvolutionChain> getEvolutionChain(int chainId, int pokemonId) async {
+    final resp = await _apiHttpRequest('/evolution-chain/$chainId');
     if (resp.statusCode == 200) {
       final decodedData = json.decode(resp.body);
       final evolutionChain = EvolutionChain.fromJson(decodedData);
-      for (final evolution in evolutionChain.chain.evolvesTo) {
+      final evolutionChainFinal =
+          EvolutionChain(chain: Chain(evolvesTo: [], species: Species()));
+      if (evolutionChain.chain.species.id == pokemonId) {
+        evolutionChainFinal.chain.species = evolutionChain.chain.species;
+        evolutionChainFinal.chain.evolvesTo = evolutionChain.chain.evolvesTo;
+      } else {
+        if (evolutionChain.chain.evolvesTo[0].species.id == pokemonId) {
+          evolutionChainFinal.chain.species =
+              evolutionChain.chain.evolvesTo[0].species;
+          evolutionChainFinal.chain.evolvesTo =
+              evolutionChain.chain.evolvesTo[0].evolvesTo;
+        } else {
+          evolutionChainFinal.chain.species =
+              evolutionChain.chain.evolvesTo[0].evolvesTo[0].species;
+          evolutionChainFinal.chain.evolvesTo =
+              evolutionChain.chain.evolvesTo[0].evolvesTo[0].evolvesTo;
+        }
+      }
+      for (final evolution in evolutionChainFinal.chain.evolvesTo) {
         final respPokemonForm =
             await _apiHttpRequest('/pokemon-form/${evolution.species.id}');
         if (respPokemonForm.statusCode == 200) {
@@ -134,7 +152,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
           throw const ServerException();
         }
       }
-      return evolutionChain;
+      return evolutionChainFinal;
     } else {
       throw const ServerException();
     }

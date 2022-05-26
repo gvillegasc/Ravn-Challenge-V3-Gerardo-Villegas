@@ -14,15 +14,17 @@ class GetEvolutionChain
   @override
   Future<Either<Failure, EvolutionChain>> call(
       GetEvolutionChainParams params) async {
-    return await repository.getEvolutionChain(params.pokemonId);
+    return await repository.getEvolutionChain(params.chainId, params.pokemonId);
   }
 }
 
 class GetEvolutionChainParams extends Equatable {
-  const GetEvolutionChainParams({required this.pokemonId});
+  const GetEvolutionChainParams(
+      {required this.chainId, required this.pokemonId});
 
+  final int chainId;
   final int pokemonId;
 
   @override
-  List<Object> get props => [pokemonId];
+  List<Object> get props => [chainId, pokemonId];
 }

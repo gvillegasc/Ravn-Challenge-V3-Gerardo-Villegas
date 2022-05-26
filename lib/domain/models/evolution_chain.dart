@@ -2,43 +2,33 @@ class EvolutionChain {
   EvolutionChain({
     required this.chain,
   });
-
-  Chain chain;
-
   factory EvolutionChain.fromJson(Map<String, dynamic> json) => EvolutionChain(
         chain: Chain.fromJson(json['chain']),
       );
+
+  Chain chain;
 }
 
 class Chain {
   Chain({
     required this.evolvesTo,
-  });
-
-  List<EvolvesTo> evolvesTo;
-
-  factory Chain.fromJson(Map<String, dynamic> json) => Chain(
-        evolvesTo: List<EvolvesTo>.from(
-            json['evolves_to'].map((x) => EvolvesTo.fromJson(x))),
-      );
-}
-
-class EvolvesTo {
-  EvolvesTo({
     required this.species,
   });
 
-  factory EvolvesTo.fromJson(Map<String, dynamic> json) => EvolvesTo(
+  factory Chain.fromJson(Map<String, dynamic> json) => Chain(
+        evolvesTo:
+            List<Chain>.from(json['evolves_to'].map((x) => Chain.fromJson(x))),
         species: Species.fromJson(json['species']),
       );
 
+  List<Chain> evolvesTo;
   Species species;
 }
 
 class Species {
   Species({
-    required this.name,
-    required this.url,
+    this.name,
+    this.url,
     this.id,
     this.spriteFront,
   });
@@ -52,8 +42,8 @@ class Species {
             .replaceAll('/', '')),
       );
 
-  String name;
-  String url;
+  String? name;
+  String? url;
   int? id;
   String? spriteFront;
 }

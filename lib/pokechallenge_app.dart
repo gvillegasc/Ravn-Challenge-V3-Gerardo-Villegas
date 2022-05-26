@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pokechallenge/presentation/blocs/evolution_chain/evolution_chain_bloc.dart';
 import 'package:pokechallenge/presentation/blocs/pokemon_form/pokemon_form_bloc.dart';
 import 'package:pokechallenge/presentation/blocs/pokemon_species/pokemon_species_bloc.dart';
 import 'package:pokechallenge/presentation/routes/app_routes.dart';
@@ -29,6 +30,9 @@ class PokechallengeApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (_) => getIt<PokemonSpeciesBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => getIt<EvolutionChainBloc>(),
         )
       ],
       child: MaterialApp(
