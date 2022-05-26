@@ -114,24 +114,24 @@ void main() {
         PokemonForm.fromJson(json.decode(fixture('pokemon_form.json')));
 
     test('should get a pokemon form from the remote data source', () async {
-      when(() => remoteDataSource.getPokemonForms(pokemonId))
+      when(() => remoteDataSource.getPokemonForm(pokemonId))
           .thenAnswer((_) async => pokemonForm);
 
-      final result = await repository.getPokemonForms(pokemonId);
+      final result = await repository.getPokemonForm(pokemonId);
 
       expect(result, equals(Right(pokemonForm)));
-      verify(() => remoteDataSource.getPokemonForms(pokemonId));
+      verify(() => remoteDataSource.getPokemonForm(pokemonId));
       verifyNoMoreInteractions(remoteDataSource);
     });
 
     test('should get a server failure from the remote data source', () async {
-      when(() => remoteDataSource.getPokemonForms(pokemonId))
+      when(() => remoteDataSource.getPokemonForm(pokemonId))
           .thenThrow(ServerException());
 
-      final result = await repository.getPokemonForms(pokemonId);
+      final result = await repository.getPokemonForm(pokemonId);
 
       expect(result, equals(Left(ServerFailure())));
-      verify(() => remoteDataSource.getPokemonForms(pokemonId));
+      verify(() => remoteDataSource.getPokemonForm(pokemonId));
       verifyNoMoreInteractions(remoteDataSource);
     });
   });

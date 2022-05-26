@@ -35,9 +35,9 @@ class PokemonRepositoryImpl extends PokemonRepository {
   }
 
   @override
-  Future<Either<Failure, PokemonForm>> getPokemonForms(int pokemonId) async {
+  Future<Either<Failure, PokemonForm>> getPokemonForm(int pokemonId) async {
     try {
-      final pokemonForm = await remoteDataSource.getPokemonForms(pokemonId);
+      final pokemonForm = await remoteDataSource.getPokemonForm(pokemonId);
       return Right(pokemonForm);
     } on ServerException {
       return Left(ServerFailure());

@@ -7,6 +7,7 @@ import 'package:pokechallenge/data/repositories/pokemon_repository_impl.dart';
 import 'package:pokechallenge/domain/repositories/pokemon_repository.dart';
 import 'package:pokechallenge/domain/use_cases/get_pokemon_list.dart';
 import 'package:pokechallenge/presentation/blocs/pokemon_list/pokemon_list_bloc.dart';
+import 'package:http/http.dart' as http;
 
 final getIt = GetIt.instance;
 
@@ -35,7 +36,10 @@ Future<void> init() async {
 
   // Datasource
   getIt.registerLazySingleton<RemoteDataSource>(
-    () => RemoteDataSourceImpl(graphqlClient: getIt()),
+    () => RemoteDataSourceImpl(
+      graphqlClient: getIt(),
+      httpClient: getIt(),
+    ),
   );
   getIt.registerLazySingleton<LocalDataSource>(
     () => LocalDataSourceImpl(),
@@ -50,4 +54,5 @@ Future<void> init() async {
       ),
     ),
   );
+  getIt.registerLazySingleton(() => http.Client());
 }

@@ -5,20 +5,19 @@ import 'package:pokechallenge/domain/models/pokemon_form.dart';
 import 'package:pokechallenge/domain/repositories/pokemon_repository.dart';
 import 'package:pokechallenge/domain/use_cases/use_case.dart';
 
-class GetPokemonForms implements UseCase<PokemonForm, GetPokemonFormsParams> {
-  GetPokemonForms(this.repository);
+class GetPokemonForm implements UseCase<PokemonForm, GetPokemonFormParams> {
+  GetPokemonForm(this.repository);
 
   final PokemonRepository repository;
 
   @override
-  Future<Either<Failure, PokemonForm>> call(
-      GetPokemonFormsParams params) async {
-    return await repository.getPokemonForms(params.pokemonId);
+  Future<Either<Failure, PokemonForm>> call(GetPokemonFormParams params) async {
+    return await repository.getPokemonForm(params.pokemonId);
   }
 }
 
-class GetPokemonFormsParams extends Equatable {
-  const GetPokemonFormsParams({required this.pokemonId});
+class GetPokemonFormParams extends Equatable {
+  const GetPokemonFormParams({required this.pokemonId});
 
   final int pokemonId;
 

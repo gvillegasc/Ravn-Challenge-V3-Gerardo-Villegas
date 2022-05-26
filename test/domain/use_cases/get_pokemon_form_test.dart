@@ -4,18 +4,18 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:pokechallenge/domain/models/pokemon_form.dart';
-import 'package:pokechallenge/domain/use_cases/get_pokemon_forms.dart';
+import 'package:pokechallenge/domain/use_cases/get_pokemon_form.dart';
 
 import '../../fixtures/fixture_reader.dart';
 import '../../mocks/repositories_mock.dart';
 
 void main() {
   late MockPokemonRepository pokemonRepository;
-  late GetPokemonForms usecase;
+  late GetPokemonForm usecase;
 
   setUp(() {
     pokemonRepository = MockPokemonRepository();
-    usecase = GetPokemonForms(pokemonRepository);
+    usecase = GetPokemonForm(pokemonRepository);
   });
 
   final pokemonForm =
@@ -23,15 +23,15 @@ void main() {
 
   test('should get pokemon form from repository', () async {
     const pokemonId = 1;
-    when(() => pokemonRepository.getPokemonForms(pokemonId))
+    when(() => pokemonRepository.getPokemonForm(pokemonId))
         .thenAnswer((_) async => Right(pokemonForm));
 
     final result =
-        await usecase(const GetPokemonFormsParams(pokemonId: pokemonId));
+        await usecase(const GetPokemonFormParams(pokemonId: pokemonId));
 
     expect(result, equals(Right(pokemonForm)));
 
-    verify(() => pokemonRepository.getPokemonForms(pokemonId));
+    verify(() => pokemonRepository.getPokemonForm(pokemonId));
     verifyNoMoreInteractions(pokemonRepository);
   });
 }
