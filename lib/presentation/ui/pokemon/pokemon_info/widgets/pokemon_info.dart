@@ -48,7 +48,7 @@ class _PokemonInfoState extends State<PokemonInfo> {
             return Column(
               children: [
                 Container(
-                  height: 226,
+                  height: 236,
                   width: double.infinity,
                   color: pokemonColor(
                     stateSpecies.pokemonSpecies.colorName.name,
@@ -56,6 +56,15 @@ class _PokemonInfoState extends State<PokemonInfo> {
                   ).withOpacity(.5),
                   child: Stack(
                     children: [
+                      if (stateSpecies.pokemonSpecies.isLegendary)
+                        Positioned(
+                          top: 10,
+                          right: 10,
+                          child: Image.asset(
+                            'assets/pages/icons/ic_legendary.png',
+                            height: 40,
+                          ),
+                        ),
                       Positioned(
                         top: 20,
                         child: Container(
