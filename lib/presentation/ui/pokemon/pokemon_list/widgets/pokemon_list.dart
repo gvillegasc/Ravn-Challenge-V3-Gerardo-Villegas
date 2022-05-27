@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_sticky_header/flutter_sticky_header.dart';
 import 'package:pokechallenge/core/app_colors.dart';
 import 'package:pokechallenge/domain/models/pokemon.dart';
@@ -78,11 +79,11 @@ class _PokemonListState extends State<PokemonList> {
       builder: (context) {
         return CupertinoAlertDialog(
           title: Text(
-            'There was an Error',
+            AppLocalizations.of(context)!.thereWasError,
             style: Theme.of(context).textTheme.bodyText2,
           ),
           content: Text(
-            'Failed to Load Data',
+            AppLocalizations.of(context)!.failedLoadData,
             style: Theme.of(context).textTheme.headline1,
           ),
           actions: [

@@ -10,6 +10,7 @@ import 'package:pokechallenge/domain/use_cases/get_pokemon_form.dart';
 import 'package:pokechallenge/domain/use_cases/get_pokemon_list.dart';
 import 'package:pokechallenge/domain/use_cases/get_pokemon_species.dart';
 import 'package:pokechallenge/presentation/blocs/evolution_chain/evolution_chain_bloc.dart';
+import 'package:pokechallenge/presentation/blocs/internet_connection/internet_connection_bloc.dart';
 import 'package:pokechallenge/presentation/blocs/pokemon_form/pokemon_form_bloc.dart';
 import 'package:pokechallenge/presentation/blocs/pokemon_list/pokemon_list_bloc.dart';
 import 'package:http/http.dart' as http;
@@ -38,6 +39,9 @@ Future<void> init() async {
     () => EvolutionChainBloc(
       getEvolutionChain: getIt<GetEvolutionChain>(),
     ),
+  );
+  getIt.registerLazySingleton(
+    () => InternetConnectionBloc(),
   );
 
   // Use cases
