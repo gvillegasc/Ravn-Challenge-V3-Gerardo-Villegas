@@ -24,7 +24,7 @@ You can know how to install flutter [here](https://flutter.dev/docs/get-started/
 
 ### Installation
 
-After to clone the repository open a console on the folder and move to the `Ravn-Challenge-V3-Gerardo-Villegas` folder
+After to clone the repository from `master` branch next open a console on the folder and move to the `Ravn-Challenge-V3-Gerardo-Villegas` folder
 
 ```bash
 # move to the app project
