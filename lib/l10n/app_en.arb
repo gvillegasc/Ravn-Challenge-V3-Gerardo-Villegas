@@ -1,0 +1,15 @@
+{
+    "pokemonList": "Pokemon List",
+    "cancel": "Cancel",
+    "search": "Search",
+    "pokemonInfo": "Pokemon Info",
+    "defaultSprite": "Default Sprite",
+    "shinySprite": "Shiny Sprite",
+    "evolutions": "Evolutions",
+    "failedLoadData": "Failed to Load Data",
+    "thereWasError": "There was an Error",
+    "connectivityIssue": "Connectivity Issue",
+    "connectivityDescription": "There is a problem trying to connect.\nPlease check your connectivity",
+    "tryAgain": "Try Again",
+    "waitingConnection": "Waiting connection"
+}

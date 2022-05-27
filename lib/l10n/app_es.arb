@@ -1,0 +1,15 @@
+{
+    "pokemonList": "Lista de Pokemones",
+    "cancel": "Cancelar",
+    "search": "Buscar",
+    "pokemonInfo": "Información de Pokemon",
+    "defaultSprite": "Predeterminada",
+    "shinySprite": "Shiny",
+    "evolutions": "Evoluciones",
+    "failedLoadData": "Error al cargar datos",
+    "thereWasError": "Hubo un error",
+    "connectivityIssue": "Problema de conectividad",
+    "connectivityDescription": "Hay un problema al intentar conectar.\nPor favor, compruebe su conectividad",
+    "tryAgain": "Intertar otra vez",
+    "waitingConnection": "Conexión en espera"
+}

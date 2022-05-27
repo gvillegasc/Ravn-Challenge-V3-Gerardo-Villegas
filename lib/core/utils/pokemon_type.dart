@@ -1,0 +1,79 @@
+import 'package:flutter/material.dart';
+import 'package:pokechallenge/domain/models/pokemon.dart';
+
+Widget pokemonType(TypeName name) {
+  switch (name) {
+    case TypeName.bug:
+      return Align(
+          widthFactor: 0.75,
+          child: Image.asset('assets/pages/icons/ic_bug.png'));
+    case TypeName.dark:
+      return Align(
+          widthFactor: 0.75,
+          child: Image.asset('assets/pages/icons/ic_dark.png'));
+    case TypeName.dragon:
+      return Align(
+          widthFactor: 0.75,
+          child: Image.asset('assets/pages/icons/ic_dragon.png'));
+    case TypeName.electric:
+      return Align(
+          widthFactor: 0.75,
+          child: Image.asset('assets/pages/icons/ic_electric.png'));
+    case TypeName.fairy:
+      return Align(
+          widthFactor: 0.75,
+          child: Image.asset('assets/pages/icons/ic_fairy.png'));
+    case TypeName.fighting:
+      return Align(
+          widthFactor: 0.75,
+          child: Image.asset('assets/pages/icons/ic_fight.png'));
+    case TypeName.fire:
+      return Align(
+          widthFactor: 0.75,
+          child: Image.asset('assets/pages/icons/ic_fire.png'));
+    case TypeName.flying:
+      return Align(
+          widthFactor: 0.75,
+          child: Image.asset('assets/pages/icons/ic_flying.png'));
+    case TypeName.ghost:
+      return Align(
+          widthFactor: 0.75,
+          child: Image.asset('assets/pages/icons/ic_ghost.png'));
+    case TypeName.grass:
+      return Align(
+          widthFactor: 0.75,
+          child: Image.asset('assets/pages/icons/ic_grass.png'));
+    case TypeName.ground:
+      return Align(
+          widthFactor: 0.75,
+          child: Image.asset('assets/pages/icons/ic_ground.png'));
+    case TypeName.ice:
+      return Align(
+          widthFactor: 0.75,
+          child: Image.asset('assets/pages/icons/ic_ice.png'));
+    case TypeName.normal:
+      return Align(
+          widthFactor: 0.75,
+          child: Image.asset('assets/pages/icons/ic_normal.png'));
+    case TypeName.poison:
+      return Align(
+          widthFactor: 0.75,
+          child: Image.asset('assets/pages/icons/ic_poison.png'));
+    case TypeName.psychic:
+      return Align(
+          widthFactor: 0.75,
+          child: Image.asset('assets/pages/icons/ic_psychic.png'));
+    case TypeName.rock:
+      return Align(
+          widthFactor: 0.75,
+          child: Image.asset('assets/pages/icons/ic_rock.png'));
+    case TypeName.steel:
+      return Align(
+          widthFactor: 0.75,
+          child: Image.asset('assets/pages/icons/ic_steel.png'));
+    case TypeName.water:
+      return Align(
+          widthFactor: 0.75,
+          child: Image.asset('assets/pages/icons/ic_water.png'));
+  }
+}

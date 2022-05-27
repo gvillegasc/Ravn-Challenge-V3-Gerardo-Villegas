@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "name": "bulbasaur",
+    "types": [
+      {
+        "name": "Grass"
+      },
+      {
+        "name": "Poison"
+      }
+    ],
+    "generation": "Generation I",
+    "sprites": {
+      "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"
+    }
+  },
+  {
+    "id": 2,
+    "name": "ivysaur",
+    "types": [
+      {
+        "name": "Grass"
+      },
+      {
+        "name": "Poison"
+      }
+    ],
+    "generation": "Generation I",
+    "sprites": {
+      "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png"
+    }
+  },
+  {
+    "id": 3,
+    "name": "venusaur",
+    "types": [
+      {
+        "name": "Grass"
+      },
+      {
+        "name": "Poison"
+      }
+    ],
+    "generation": "Generation I",
+    "sprites": {
+      "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png"
+    }
+  }
+]
